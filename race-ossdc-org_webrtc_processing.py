@@ -8,6 +8,7 @@ import cv2
 from av import VideoFrame
 import traceback 
 import subprocess as sp
+from security import safe_command
 
 try:
     import uvloop
@@ -557,7 +558,7 @@ if __name__ == "__main__":
                 '-f', 'flv',
                 rtmp_server]
 
-        twitchStream = sp.Popen(command, stdin=sp.PIPE)
+        twitchStream = safe_command.run(sp.Popen, command, stdin=sp.PIPE)
 
     try:
         loop.run_until_complete(
