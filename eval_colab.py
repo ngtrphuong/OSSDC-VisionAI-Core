@@ -16,7 +16,6 @@ import torch.backends.cudnn as cudnn
 from torch.autograd import Variable
 import argparse
 import time
-import random
 import cProfile
 import pickle
 import json
@@ -28,6 +27,7 @@ from PIL import Image
 
 import matplotlib.pyplot as plt
 import cv2
+import secrets
 
 def str2bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
@@ -130,7 +130,7 @@ def parse_args(argv=None):
         args.output_coco_json = True
     
     if args.seed is not None:
-        random.seed(args.seed)
+        secrets.SystemRandom().seed(args.seed)
         
     
     return args
@@ -920,7 +920,7 @@ def evaluate(net:Yolact, dataset, train_mode=False):
     dataset_indices = list(range(len(dataset)))
     
     if args.shuffle:
-        random.shuffle(dataset_indices)
+        secrets.SystemRandom().shuffle(dataset_indices)
     elif not args.no_sort:
         # Do a deterministic shuffle based on the image ids
         #
