@@ -28,6 +28,7 @@ from PIL import Image
 
 import matplotlib.pyplot as plt
 import cv2
+import fickling
 
 def str2bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
@@ -1090,7 +1091,7 @@ if __name__ == '__main__':
 
         if args.resume and not args.display:
             with open(args.ap_data_file, 'rb') as f:
-                ap_data = pickle.load(f)
+                ap_data = fickling.load(f)
             calc_map(ap_data)
             exit()
 
