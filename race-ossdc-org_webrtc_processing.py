@@ -474,7 +474,7 @@ if __name__ == "__main__":
             #install youtube-dl for this to work: pip install youtube-dl
             command = "youtube-dl -f 'bestvideo[height<1000]' -g '"+videoUrl+"'" 
             # command = "youtube-dl -f 'bestvideo' -g '"+videoUrl+"'" 
-            videoUrl = subprocess.check_output(command, shell = True).decode("utf-8").strip()
+            videoUrl = subprocess.check_output(command, shell = False).decode("utf-8").strip()
             args.play_from = videoUrl
         elif "direct" == videoUrl:
             skipFrames = True
